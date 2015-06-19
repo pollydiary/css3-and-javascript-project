@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MBTI</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+<script src="/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+ <div class="sex_note"> <p>国际最为流行的职业人格评估工具———MBTI<br>
+      MBTI职业性格测试作为一种对个性的判断和分析，是一个理论模型，从纷繁复杂的个性特征中，归纳提炼出4个关键要素——动力、信息收集、决策方式、生活方式，进行分析判断，从而把不同个性的人区别开来。<br>
+      <br>
+      1、选项没有“对”与“错”之分 ，选择更接近你平时的感受或行为的那项，请选择你是怎么样做的，而不要选择你想要怎样、以为会怎样、或者认为哪样更好。 <br>
+      2、《性格分析报告》展示的是你的性格倾向，而不是你的知识、技能、经验。 <br>
+      3、MBTI提供的性格类型描述仅供测试者确定自己的性格类型之用，性格类型没有好坏，只有不同。每一种性格特征都有其价值和优点，也有缺点和需要注意的地方。清楚地了解自己的性格优劣势，有利于更好地发挥自己的特长，而尽可能的在为人处事中避免自己性格中的劣势，更好地和他人相处，更好地作重要的决策。</p> </div>
+    <script>
+    	$(document).ready(function(){
+    		
+    		var num = 0;
+			var me=0,mi=0,ms=0,mn=0,mt=0,mf=0,mj=0,mp=0;
+
+    		function result(){
+    			
+    			$('.mbti li').each(function(liindex,lielement){
+					$li = $(this);
+    				
+    				$(this).find('input:radio').each(function(index,element) {
+    					
+    					if( $(this).is(':checked') ){
+							
+							if(liindex == 0 || liindex == 4 || liindex == 12 || liindex == 16 || liindex == 24){
+								
+								if(index == 0){ me += 1}
+    							if(index == 1){ mi += 1}
+								
+							}
+							if(liindex == 8 || liindex == 20){
+								
+								if(index == 0){ mi += 1}
+    							if(index == 1){ me += 1}
+								
+							}
+							if(liindex == 1 || liindex == 9 || liindex == 17 || liindex == 21){
+								
+								if(index == 0){ mn += 1}
+    							if(index == 1){ ms += 1}
+								
+							}
+							if(liindex == 5 || liindex == 13 || liindex == 25){
+								
+								if(index == 0){ ms += 1}
+    							if(index == 1){ mn += 1}
+								
+							}
+							if(liindex == 2 || liindex == 6){
+								
+								if(index == 0){ mf += 1}
+    							if(index == 1){ mt += 1}
+								
+							}
+							if(liindex == 10 || liindex == 14 || liindex == 18 || liindex == 22 || liindex == 26){
+								
+								if(index == 0){ mt += 1}
+    							if(index == 1){ mf += 1}
+								
+							}
+							if(liindex == 3 || liindex == 11 || liindex == 15 || liindex == 23){
+								
+								if(index == 0){ mj += 1}
+    							if(index == 1){ mp += 1}
+								
+							}
+							if(liindex == 7 || liindex == 19 || liindex == 27){
+								
+								if(index == 0){ mp += 1}
+    							if(index == 1){ mj += 1}
+								
+							}
+    					 }
+    				});
+    				
+    			});
+
+    		}
+			
+			
+    		
+    		
+    		$('#form_sex input:submit').click(function(event) {
+    			
+    			if($('#form_sex input:checked').length == $('.mbti li').length  ){
+    				result()
+    				
+					var aa,bb,cc,dd;
+					if(me > mi){aa='e'}else{aa='i'}
+					if(ms > mn){bb='s'}else{bb='n'}
+					if(mt > mf){cc='t'}else{cc='f'}
+					if(mj > mp){dd='j'}else{dd='p'}
+					
+					var mymbti = aa+bb+cc+dd;					
+					
+					$('.mbticlass').each(function(index, element) {
+                        if($(this).attr('id') == mymbti){
+							$('#return').append('你的测试类型是<strong style="text-transform: uppercase; color:red">' + mymbti + '</strong><br><br>' + $(this).html())
+							}
+                    });
+					
+    				
+                    $('.mbti').hide();
+					$('.sex_note').hide();
+
+    				
+    				$(document).scrollTop(0)
+    				
+    				$(this).hide();
+		
+    				
+    				
+    			}else{
+    				alert('你还没有填完呢~')
+    				return false
+    			}
+
+    		})
+$('#form_sex dd').click(function() {
+	$(this).addClass('click').siblings('dd').removeClass('click')
+});
+
+
+
+})
+</script>
+    <div id="form_sex">
+      <div>
+        <ul  class="mbti">
+          <li>
+            <dl>
+              <dt>1、当你和一群人在一起时，你更注意？</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r1" />
+                  <span>A. 参与这群人的谈话</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r1" />
+                  <span>B. 和一个你熟悉的人单独交谈</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>2、你通常与哪种人相处的更好？</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r2" />
+                  <span>A. 富于想象的人</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r2" />
+                  <span>B. 注重现实的人</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>3、你更倾向与于重视</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r3" />
+                  <span>A. 人情而非逻辑</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r3" />
+                  <span>B. 逻辑而非人情</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>4、如果你要完成一项为期一周的工作，你会</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r4" />
+                  <span>A. 先花时间列出每件要做的事情，然后按顺序做</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r4" />
+                  <span>B. 一头扎进去做“车到山前必有路”，总会有路</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>5、你通常将自己的感情：</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r5" />
+                  <span>A. 无拘无束表达出来</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r5" />
+                  <span>B. 深藏不露</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>6、当你要做别人也做的事情时，你更愿意：</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r6" />
+                  <span>A. 用大家所能接受的方式做</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r6" />
+                  <span>B. 按自己的想法做</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>7、下列哪个词是对人们的更高赞赏</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r7" />
+                  <span>A. 真正有感情的人</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r7" />
+                  <span>B. 一贯理智的人</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>8、在下列哪种情况你表现得更好</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r8" />
+                  <span>A. 处理意想不到的问题</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r8" />
+                  <span>B. 遵循安排好的计划表</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>9、在社交性或娱乐性的聚会上，你</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r9" />
+                  <span>A. 有时会觉得厌烦</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r9" />
+                  <span>B. 总是很高兴</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>10、下列哪种人对你来说更有吸引力</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r10" />
+                  <span>A. 聪明且反应敏捷</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r10" />
+                  <span>B. 稳重且脚踏实地</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>11、哪个词是对人的更高赞扬</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r11" />
+                  <span>A. 有远见</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r11" />
+                  <span>B. 通情达理</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>12、你认为“例行公事，按部就班”是：</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r12" />
+                  <span>A. 良好的做事方式</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r12" />
+                  <span>B. 即使必要也让人不舒服</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>13、当你不得不去见陌生人时，你：</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r13" />
+                  <span>A. 很高兴，至少不感到费力</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r13" />
+                  <span>B. 多少要费些力气</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>14、更令你讨厌的是：</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r14" />
+                  <span>A. 空想的理论</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r14" />
+                  <span>B. 不喜欢理论的人</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>15、你感觉自己是</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r15" />
+                  <span>A. 软心肠</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r15" />
+                  <span>B. 硬心肠</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>16、有一天要你去某地，你宁愿</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r16" />
+                  <span>A. 先安排好要做什么和什么时候做</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r16" />
+                  <span>B. 只管做，看情况再说</span></label>
+              </dd>
+            </dl>
+          </li>
+          <h2>下列哪个词的词义对你来说更有吸引力：</h2>
+          <li>
+            <dl>
+              <dt>17、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r17" />
+                  <span>A. 聚会</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r17" />
+                  <span>B. 剧院</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>18、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r18" />
+                  <span>A. 富于想象</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r18" />
+                  <span>B. 注重现实</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>19、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r19" />
+                  <span>A. 明智的</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r19" />
+                  <span>B. 迷人的</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>20、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r20" />
+                  <span>A. 冲动</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r20" />
+                  <span>B. 决定</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>21、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r21" />
+                  <span>A. 缄默</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r21" />
+                  <span>B. 健谈</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>22、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r22" />
+                  <span>A. 理论</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r22" />
+                  <span>B. 现实</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>23、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r23" />
+                  <span>A. 果断</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r23" />
+                  <span>B. 忠实</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>24、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r24" />
+                  <span>A. 固执</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r24" />
+                  <span>B. 妥协</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>25、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r25" />
+                  <span>A. 活泼</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r25" />
+                  <span>B. 恬静</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>26、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r26" />
+                  <span>A. 生产</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r26" />
+                  <span>B. 设计</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>27、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r27" />
+                  <span>A. 条理</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r27" />
+                  <span>B. 热心</span></label>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>28、</dt>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r28" />
+                  <span>A. 灵活</span></label>
+              </dd>
+              <dd>
+                <label class="radio">
+                  <input type="radio" name="r28" />
+                  <span>B. 果断</span></label>
+              </dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+      <input type="submit" id="button" value="提交" />
+      <div id="return"></div>
+      <div class="complete">
+        <div class="mbticlass" id="istj"> 安静严肃，通过全面性和可靠性获得成功，实际，有责任感，决定有逻辑性，并一步步朝着目标前进，不易分心。喜欢将工作，家庭和生活安排的井井有条。重视传统和忠诚。
+          适合工作：首席信息系统执行官，天文学家，数据库管理，会计，房地产经纪人，侦探，行政管理，信用分析师。 </div>
+        <div class="mbticlass" id="isfj"> 安静友好，有责任感和良知。坚定地致力于完成他们的义务。全面，勤勉，精确，忠诚，体贴，留心和记得他们重视的人的小细节，关心他们的感受。努力把工作和家庭环境营造的有序和温馨。
+          适合工作：内科医生，营养师，图书或档案管理员。室内装潢设计师，客户服务专员，记账员，特殊教育教师，酒店管理。 </div>
+        <div class="mbticlass" id="infj"> 寻求思想、关系、物质等之间的意义和联系。希望了解什么能激励人，对人有很强的洞察力。有责任心，坚持自我价值观。对于怎样更好地服务大众有清晰的远景。在对于目标的实现过程中有计划且果断坚定。
+          适合工作：特殊教育教师，建筑设计师，培新经理或培训师，职业策划咨询顾问，心理咨询师，网站编辑，作家，仲裁人。 </div>
+        <div class="mbticlass" id="intj"> 在实现自己的想法和达成自己的目标时有创新的想法和非凡的动力，能很快的洞察到外界事物间的规律并形成长期的远景计划。一旦决定做一件事就会开始规划并直到完成。多疑、独立，对于自己和他人能力和表现得要求很高。
+          适合工作：首席财政执行官，知识产权律师，设计工程师，精神分析师，心脏病专家，媒体策划，网络管理师，建筑师。 </div>
+        <div class="mbticlass" id="istp"> 灵活忍耐性强，是个安静的观察者，直到有问题发生，就会马上行动，找到实用的解决方法。分析事物运作原理，能从大量信息中很快找到关键症结所在。对原因和结果感兴趣，用逻辑方式解决问题，重视效率。
+          适合工作：信息服务业经理，计算机程序员，警官，软件开发员，律师助理，消防员，私人侦探，药剂师。 </div>
+        <div class="mbticlass" id="isfp"> 安静友好，敏感和善。享受当前，喜欢有自己的空间，喜欢能按照自己的时间表工作。对于自己的价值观和自己觉得重要的人很忠诚，有责任心。不喜欢争论和冲突，不会将自己的观念和价值观强加到别人身上。
+          适合工作：室内装潢设计师，按摩师，客户服务专员，服装设计师，厨师，护士，牙医，旅游管理。 </div>
+        <div class="mbticlass" id="infp"> 理想主义，对自己的价值观和自己觉得重要的人忠诚，希望外部的生活和自己内心的价值观统一。好奇心重，很快能看到事情的可能性，能成为实现理想的催化剂，寻求理解别人和帮助他们实现潜能。适应力强，灵活，善于接受，除非是有悖于自己的价值观。
+          适合工作：心理学家，人力资源管理，翻译，大学教师（人文学科），社会工作者，图书管理员，服装设计师，编辑/网站设计师。 </div>
+        <div class="mbticlass" id="intp"> 对于自己感兴趣的任何事物都寻求找到合理的解释。喜欢理论性和抽象的事物，热衷于思考而非社交活动。安静内向，灵活，适应性强，对于自己感兴趣的领域有超凡的集中精力深度解决问题的能力。多疑，有时会挑剔，喜欢分析。
+          适合工作：软件设计师，风险投资家，法律仲裁人，金融分析师，大学教师（经济学），音乐家，知识产权律师，网站设计师。 </div>
+        <div class="mbticlass" id="estp"> 灵活，忍耐力强。实际，注重结果，觉得理论和抽象解释非常无趣。喜欢积极的采取行动解决问题，注重当前，自然不做作，享受和她人在一起的时光。喜欢物质享受和时尚。学习新事物最有效的方式是通过亲身感受和练习。
+          适合工作：企业家，股票经纪人，保险经纪人，土木工程师，旅游管理，职业运动员或教练，电子游戏开发员，房产开发商。 </div>
+        <div class="mbticlass" id="esfp"> 外向友好，接受力强。热爱生活，人类和物质上的享受。喜欢和别人一起将事情做成功，在工作中讲究常识和实用性，并使工作显得有趣。灵活、自然不做作，对于新事物能很快适应，学习新事物最有效的方式是和她人一起尝试。
+          适合工作：幼教，公关专员，职业策划咨询师，旅游管理，导游，促销员，演员，海洋生物学家，销售。 </div>
+        <div class="mbticlass" id="enfp"> 热情洋溢，富有想象力。认为人生有很多可能性，能很快将事物和信息联系起来，然后很自信的根据自己的判断解决问题。总是需要得到别人的认可，也总是准备着给予她人赏识和帮助。灵活，自然不做作，有很强的即兴发挥的能力，言语流畅。
+          适合工作：广告客户管理，管理咨询顾问，演员，平面设计师，艺术指导，公司团队培训师，心理学家，人力资源管理。 </div>
+        <div class="mbticlass" id="entp"> 反应快，睿智，有激励别人的能力，警觉性强，直言不讳。在解决新的、具有挑战性的问题时机智而有策略。善于找出理论上的可能性，然后再用战略的眼光分析。善于理解别人，不喜欢例行公事。很少会用相同的方法做同样的事情。倾向于一个接一个的发展新的爱好。
+          适合工作：企业家，投资银行家，广告创意总监，市场管理咨询顾问，文案，广播主持人，电视主持人，演员，大学校长。 </div>
+        <div class="mbticlass" id="estj"> 实际，现实主义。果断，一旦下决心就会马上行动。善于将项目和人组织起来将事情完成，并且可能用最有效率的方法得到结果。注重日常细节，有一套非常清晰的逻辑标准，有系统性的遵循，并希望她人也遵循。在实施计划时强而有力。
+          适合工作：公司首席执行官，军官，预算分析师，药剂师，房地产经纪人，保险经纪人，教师（贸易或工商类），物业管理。 </div>
+        <div class="mbticlass" id="istj"> 热心肠，有责任心，合作。希望周边的环境温馨而和谐，并为此果断执行。喜欢和她人一起精确并及时完成任务。事无巨细都会保持忠诚，能体察到他人在日常生活中的所需并竭尽全力帮助。希望自己和自己的所为能受到他人的认可和赏识。
+          适合工作：房地产经纪人，零售商，护士，理货员，采购，按摩师，运动教练，饮食业管理，旅游管理。 </div>
+        <div class="mbticlass" id="enfj"> 热情，为他人着想，易感应，有责任心。非常注重她人感情，需求和动机。善于发现他人潜能，并希望能帮助他们实现。能成为个人或群体成长和进步的催化剂。忠诚，对于赞扬和批评都会积极回应，友善，好社交。在群体中能很好的帮助他人，并有鼓舞他人的领导能力。
+          适合工作：广告客户管理，杂志编辑，公司培训师，电视制片人，市场专员，作家，社会工作者，人力资源管理。 </div>
+        <div class="mbticlass" id="entj"> 坦诚果断，有天生的领导能力。能很快看到组织程序和政策中的不合理性和低效能性，发展并实施有效和全面的系统来解决问题，善于做长期的计划和目标的设定，通常见多识广，博览群书，喜欢拓广自己的知识面并将此和她人分享。在陈述自己的想法时强而有力。
+          适合工作：公司首席执行官，管理咨询顾问，政治家，房产开发商，教育咨询顾问，投资顾问，法官。 </div>
+      </div>
+    </div>
+</body>
+</html>
