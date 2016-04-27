@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS3 Slide</title>
+<style>
+body, div, ul, li {
+	margin: 0;
+	padding: 0;
+	font-size:18px;
+	font-family:'Microsoft Yahei'
+}
+.slider {
+	width: 800px;
+	height:620px;
+	overflow:hidden;
+	margin-top:20px;
+}
+.slider ul {
+	width: 4000px;
+		margin-top:10px;
+	-webkit-animation-name: move;
+	-webkit-animation-duration: 15s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction:normal;
+	-webkit-animation-delay:3s;
+	animation-name: move;
+	animation-duration: 15s;
+	animation-iteration-count: infinite;
+	animation-direction:normal;
+	animation-delay:3s;
+}
+.slider ul > li {
+	width: 800px;
+	height: 500px;
+	float: left;
+	overflow: hidden
+}
+.slider ul > li > img {
+	width: 100%;
+}
+input[type=radio]{
+	width:50px;
+	height:40px;
+	opacity: 0;
+	cursor: pointer;
+	margin-left:10px;
+	}
+input[type=radio]:nth-child(2){
+		cursor: default;
+	}
+input[type=radio]:checked{
+	cursor: default;
+	}
+input[type=radio] ~ span {
+	position:relative;
+	padding:5px 10px;
+	width:50px;
+	height:40px;
+	left:-50px;
+	top:-15px;
+	z-index:-1;
+	border:1px solid #A3A3A3;
+	opacity:1;
+	}
+.btn1:checked ~ .btntext1 {
+	opacity:.5;
+	}
+.btn2:checked ~ .btntext2 {
+	opacity:.5;
+	}
+.btn3:checked ~ .btntext3 {
+	opacity:.5;
+	}
+.btn4:checked ~ .btntext4 {
+	opacity:.5;
+	}
+.btn5:checked ~ .btntext5 {
+	opacity:.5;
+	}
+.btn6:checked ~ .btntext6 {
+	opacity:.5;
+	}
+input[type=radio].item { position:relative; top:570px;z-index:100;}
+input[type=radio].item ~ span { position:relative; top:560px;z-index:10;}
+@-webkit-keyframes move {
+ 0% {
+ -webkit-transform:translate3D(0,0,0)
+}
+ 10% {
+ -webkit-transform:translate3D(-800px,0,0)
+}
+ 26% {
+ -webkit-transform:translate3D(-800px,0,0)
+}
+ 36% {
+ -webkit-transform:translate3D(-1600px,0,0)
+}
+ 52% {
+ -webkit-transform:translate3D(-1600px,0,0)
+}
+ 62% {
+ -webkit-transform:translate3D(-2400px,0,0)
+}
+ 78% {
+ -webkit-transform:translate3D(-2400px,0,0)
+}
+ 88% {
+ -webkit-transform:translate3D(-3200px,0,0)
+}
+ 100% {
+ -webkit-transform:translate3D(-3200px,0,0)
+}
+}
+@keyframes move {
+ 0% {
+ transform:translate3D(0,0,0)
+}
+ 10% {
+ transform:translate3D(-800px,0,0)
+}
+ 26% {
+ transform:translate3D(-800px,0,0)
+}
+ 36% {
+ transform:translate3D(-1600px,0,0)
+}
+ 52% {
+ transform:translate3D(-1600px,0,0)
+}
+ 62% {
+ transform:translate3D(-2400px,0,0)
+}
+ 78% {
+ transform:translate3D(-2400px,0,0)
+}
+ 88% {
+ transform:translate3D(-3200px,0,0)
+}
+ 100% {
+ transform:translate3D(-3200px,0,0)
+}
+}
+.slider input:nth-child(1):checked ~ ul{
+	-webkit-animation-play-state:paused;
+	animation-play-state:paused;
+	}
+.slider input:nth-child(2):checked ~ ul{
+	-webkit-animation-play-state:running;
+	animation-play-state:running;
+	}
+.slider input.btn3:checked ~ ul{
+    -webkit-transform:translate3D(0,0,0);
+	transform:translate3D(0,0,0);
+	animation-name:none;
+	-webkit-animation-name:none;
+	}
+.slider input.btn4:checked ~ ul{
+    -webkit-transform:translate3D(-800px,0,0);
+	transform:translate3D(-800px,0,0);
+	animation-name:none;
+	-webkit-animation-name:none;
+	}
+.slider input.btn5:checked ~ ul{
+    -webkit-transform:translate3D(-1600px,0,0);
+	transform:translate3D(-1600px,0,0);
+	animation-name:none;
+	-webkit-animation-name:none;
+	}
+.slider input.btn6:checked ~ ul{
+    -webkit-transform:translate3D(-3200px,0,0);
+	transform:translate3D(-3200px,0,0);
+	animation-name:none;
+	-webkit-animation-name:none;
+	}
+</style>
+</head>
+
+<body>
+<div class="slider">
+  <input type="radio" value="1" name="control" class="btn1"><span class="btntext1">暂停</span>
+  <input type="radio" value="2" name="control" class="btn2" checked><span class="btntext2">继续</span>
+  <input type="radio" value="3" name="control" class="btn3 item"><span class="btntext3 btntext">1</span>
+  <input type="radio" value="4" name="control" class="btn4 item"><span class="btntext4 btntext">2</span>
+  <input type="radio" value="5" name="control" class="btn5 item"><span class="btntext5 btntext">3</span>
+  <input type="radio" value="6" name="control" class="btn6 item"><span class="btntext6 btntext">4</span>
+  <ul>
+    <li><img src="1.jpg" alt=""></li>
+    <li><img src="2.jpg" alt=""></li>
+    <li><img src="3.jpg" alt=""></li>
+    <li><img src="4.jpg" alt=""></li>
+    <li><img src="1.jpg" alt=""></li>
+  </ul>
+</div>
+</body>
+</html>
